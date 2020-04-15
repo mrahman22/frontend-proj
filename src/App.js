@@ -4,11 +4,9 @@ import Nav from "./components/Nav";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import { Router } from "@reach/router";
-//import AllArticles from "./components/AllArticles";
 import SingleArticle from "./components/SingleArticle";
-import GetArticlesByTopic from "./components/GetArticlesByTopic";
 import LoginForm from "./components/LoginForm";
-// import Comments from "./components/Comments";
+import ErrorForm from "./components/ErrorForm";
 import ArticlesList from "./components/ArticlesList";
 
 class App extends React.Component {
@@ -44,23 +42,19 @@ class App extends React.Component {
         <Nav />
         <Router>
           <Home path="/" />
-          {/* <AllArticles path="/articles" /> */}
           <ArticlesList path="/articles" />
+          <ArticlesList path="/topics/:topic_slug" />
           <SingleArticle
             path="/articles/:article_id"
             loggedInUser={this.state.loggedInUser}
           />
-          <GetArticlesByTopic path="/topics/:topic_slug" />
-          {/* <Comments
-            path="/articles/:article_id/comments"
-            loggedInUser={this.state.loggedInUser}
-          /> */}
           <LoginForm
             path="/login"
             handleLogin={this.handleLogin}
             loggedInUser={this.state.loggedInUser}
             handleLogout={this.handleLogout}
           />
+          <ErrorForm default status={404} msg={"page not found"} />
         </Router>
       </div>
     );

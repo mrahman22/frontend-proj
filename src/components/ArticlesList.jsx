@@ -7,9 +7,9 @@ import Voter from "./Voter";
 class ArticlesList extends Component {
   state = {
     articles: [],
-    articlesByTopic: [],
     isLoading: true,
     type: "articles",
+    hasError: false,
   };
 
   componentDidMount() {
@@ -17,10 +17,15 @@ class ArticlesList extends Component {
   }
 
   fetchAllArticles = () => {
-    const topic = this.props.location.search.slice(1);
-    api.fetchArticles(topic).then((articles) => {
-      this.setState({ articles, isLoading: false });
-    });
+    const topic = this.props.topic_slug;
+    api
+      .fetchArticles(topic)
+      .then((articles) => {
+        this.setState({ articles, isLoading: false });
+      })
+      .catch((err) => {
+        this.setState({ hasError: true });
+      });
   };
 
   handleSort = (value) => {
@@ -30,7 +35,8 @@ class ArticlesList extends Component {
   };
 
   render() {
-    const { articles, isLoading } = this.state;
+    const { articles, isLoading, hasError } = this.state;
+    if (hasError) return <p className="topics-error">"Topic does not exist"</p>;
     if (isLoading) return "....Loading";
     return (
       <div className="all-articles">
@@ -46,15 +52,12 @@ class ArticlesList extends Component {
                 <p>user: {article.author}</p>
                 <p>Topic: {article.topic}</p>
                 <p>Created_at: {article.created_at}</p>
-                {/* <p>Votes: {article.votes}</p> */}
-                {/* <Link to={`${article.article_id}/comments`}> */}
                 <p>Comment_Count: {article.comment_count}</p>
                 <Voter
                   votes={article.votes}
                   id={article.article_id}
                   type={this.state.type}
                 />
-                {/* </Link> */}
               </li>
             );
           })}

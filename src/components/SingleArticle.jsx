@@ -10,6 +10,7 @@ class SingleArticle extends Component {
     comments: [],
     isLoading: true,
     type: "articles",
+    hasError: false,
   };
 
   componentDidMount() {
@@ -26,9 +27,14 @@ class SingleArticle extends Component {
 
   getArticleById = () => {
     const { article_id } = this.props;
-    api.fetchArticleById(article_id).then((selectedArticle) => {
-      this.setState({ selectedArticle, isLoading: false });
-    });
+    api
+      .fetchArticleById(article_id)
+      .then((selectedArticle) => {
+        this.setState({ selectedArticle, isLoading: false });
+      })
+      .catch((err) => {
+        this.setState({ hasError: true });
+      });
   };
 
   postComment = (newComments) => {
@@ -54,7 +60,9 @@ class SingleArticle extends Component {
 
   render() {
     const { loggedInUser } = this.props;
-    const { selectedArticle, isLoading, comments } = this.state;
+    const { selectedArticle, isLoading, comments, hasError } = this.state;
+    if (hasError)
+      return <p className="article-error">"article id does not exist"</p>;
     if (isLoading) return "....Loading";
     return (
       <div className="all-comments">

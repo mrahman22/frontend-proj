@@ -116,3 +116,17 @@ nav ul li {
   margin-right: 5px;
   margin-bottom: 5px;
 }
+
+.error {
+  margin-top: 150px;
+  font-size: 3em;
+}
+
+.article-error {
+  margin-top: 150px;
+  font-size: 3em;
+}
+.topics-error {
+  margin-top: 150px;
+  font-size: 3em;
+}

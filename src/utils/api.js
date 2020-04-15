@@ -2,10 +2,16 @@ import axios from "axios";
 
 const baseUrl = "https://nc2020server.herokuapp.com/api";
 
-export const fetchArticles = () => {
-  return axios.get(`${baseUrl}/articles`).then(({ data }) => {
-    return data.articles;
-  });
+export const fetchArticles = (topic) => {
+  return axios
+    .get(`${baseUrl}/articles`, {
+      params: {
+        topic: topic,
+      },
+    })
+    .then(({ data }) => {
+      return data.articles;
+    });
 };
 
 export const fetchArticleById = (article_id) => {
