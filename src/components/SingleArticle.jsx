@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
+import { Link } from "@reach/router";
 import PostNewComment from "./PostNewComment";
+import Voter from "./Voter";
 
 class SingleArticle extends Component {
   state = {
     selectedArticle: [],
     comments: [],
     isLoading: true,
+    type: "articles",
   };
 
   componentDidMount() {
@@ -62,9 +65,18 @@ class SingleArticle extends Component {
           <p>Created_at: {selectedArticle.created_at}</p>
           <p>Body: {selectedArticle.body}</p>
           <p>Comment Count: {selectedArticle.comment_count}</p>
-          <p>Votes: {selectedArticle.votes}</p>
+          {/* <p>Votes: {selectedArticle.votes}</p> */}
+          <Voter
+            votes={selectedArticle.votes}
+            id={selectedArticle.article_id}
+            type={this.state.type}
+          />
         </section>
-        <p>You must be logged in to post or delete a comment</p>
+        <Link to={"/login"}>
+          <p className="login-msg">
+            You must be logged in to post or delete a comment
+          </p>
+        </Link>
         {loggedInUser && <PostNewComment postComment={this.postComment} />}
         <ul>
           {comments.map((comment) => {
@@ -76,7 +88,8 @@ class SingleArticle extends Component {
                 <p>article_id: {comment.article_id}</p>
                 <p>created_at: {comment.created_at}</p>
                 <p>body: {comment.body}</p>
-                <p>votes: {comment.votes}</p>
+                {/* <p>votes: {comment.votes}</p> */}
+                <Voter votes={comment.votes} id={comment.comment_id} />
                 {loggedInUser === comment.author && (
                   <button
                     className="del-btn"

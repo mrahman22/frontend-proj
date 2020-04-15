@@ -94,3 +94,25 @@ nav ul li {
 .del-btn {
   margin-bottom: 10px;
 }
+.single-article {
+  border: 5px solid brown;
+  margin: 50px;
+}
+
+.login-msg {
+  border: 1px solid red;
+  padding: 10px;
+  margin-left: 100px;
+  margin-right: 100px;
+  background-color: burlywood;
+}
+
+.voter {
+  width: 70px;
+  border-radius: 20px;
+  background-color: chocolate;
+  border-color: chocolate;
+  color: white;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}

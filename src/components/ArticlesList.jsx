@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import { Link } from "@reach/router";
 import SortArticles from "./SortArticles";
 import * as api from "../utils/api";
+import Voter from "./Voter";
 
 class ArticlesList extends Component {
   state = {
     articles: [],
     articlesByTopic: [],
     isLoading: true,
+    type: "articles",
   };
 
   componentDidMount() {
@@ -44,9 +46,14 @@ class ArticlesList extends Component {
                 <p>user: {article.author}</p>
                 <p>Topic: {article.topic}</p>
                 <p>Created_at: {article.created_at}</p>
-                <p>Votes: {article.votes}</p>
+                {/* <p>Votes: {article.votes}</p> */}
                 {/* <Link to={`${article.article_id}/comments`}> */}
                 <p>Comment_Count: {article.comment_count}</p>
+                <Voter
+                  votes={article.votes}
+                  id={article.article_id}
+                  type={this.state.type}
+                />
                 {/* </Link> */}
               </li>
             );
