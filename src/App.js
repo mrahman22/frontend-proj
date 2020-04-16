@@ -1,6 +1,5 @@
 import React from "react";
 import "./App.css";
-import Nav from "./components/Nav";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import { Router } from "@reach/router";
@@ -19,7 +18,7 @@ class App extends React.Component {
       "grumpy19",
       "happyamy2016",
     ],
-    loggedInUser: "",
+    loggedInUser: null,
   };
 
   handleLogin = (user) => {
@@ -38,8 +37,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Header />
-        <Nav />
+        <Header loggedInUser={this.state.loggedInUser} />
         <Router>
           <Home path="/" />
           <ArticlesList path="/articles" />

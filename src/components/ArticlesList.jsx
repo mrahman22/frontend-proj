@@ -52,7 +52,7 @@ class ArticlesList extends Component {
             return (
               <li key={article.article_id}>
                 <Link to={`/articles/${article.article_id}`}>
-                  <h2>{article.title}</h2>
+                  <h5>{article.title}</h5>
                 </Link>
                 <p>user: {article.author}</p>
                 <p>Topic: {article.topic}</p>

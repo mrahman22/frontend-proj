@@ -2,67 +2,203 @@
   text-align: center;
 }
 
+/*=============== Header =========================*/
+
 header {
-  background-color: black;
-  padding: 20px;
-  font-size: 2em;
+  background-color: #1f2041;
   color: white;
 }
 
+header a {
+  text-decoration: none;
+  color: white;
+}
+
+header a:hover {
+  color: yellow;
+}
+
+/*=============== Header =========================*/
+
+/*=============== Navbar =========================*/
+
 nav {
-  background-color: red;
-  padding: 15px;
+  color: white;
 }
 
 nav a {
+  text-transform: uppercase;
+  color: white;
   text-decoration: none;
 }
 
-nav ul li {
-  color: white;
-  display: inline;
-  padding: 50px;
-  font-size: 1.5em;
-  text-align: center;
+nav a:hover {
+  color: yellow;
 }
 
+nav li {
+  display: inline;
+  padding-right: 10px;
+  margin-right: 2em;
+  list-style: none;
+}
+
+.btn-unique {
+  color: yellow;
+}
+/*=============== Navbar =========================*/
+
+/*=============== Topics =========================*/
+.topics-content ul {
+  margin: 0;
+  padding: 0;
+}
+
+.topics-content ul li a {
+  text-decoration: none;
+}
+
+.topics-content ul li h2:hover {
+  color: yellow;
+}
+
+.topics-content ul h2 {
+  background-color: #417b5a;
+  margin-top: 0;
+  padding: 10px;
+  color: white;
+}
+
+.topics-content li {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  margin: 20px 100px;
+  text-transform: uppercase;
+  background-color: #e9d2c0;
+}
+
+/*=============== Topics =========================*/
+
+/*=============== All Articles =========================*/
 .all-articles ul {
   padding: 0;
   margin: 0;
 }
 
-.all-articles ul li {
+.all-articles a {
+  text-decoration: none;
+}
+
+.all-articles li {
+  padding: 0;
+  background-color: #e9d2c0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
   border: 1px solid black;
-  margin: 5px;
-  list-style: none;
+  margin: 20px 100px;
+  text-transform: uppercase;
 }
 
-.topics-content ul {
-  padding: 0;
-  margin: 0;
+.all-articles ul h5 {
+  background-color: #417b5a;
+  margin-top: 0;
+  padding: 10px;
+  color: white;
+}
+/*=============== All Articles =========================*/
+
+/*=============== single Article =========================*/
+
+.single-article {
+  margin-top: 30px;
+  color: white;
+  border-radius: 20px;
+  padding: 5px;
+  background-color: #417b5a;
+  justify-content: center;
+  margin-left: 100px;
+  margin-right: 100px;
 }
 
-.topics-content ul li {
-  border: 1px solid brown;
-  margin: 50px;
-  list-style: none;
-}
-
-.articlesByTopic ul {
-  padding: 0;
-  margin: 0;
-}
-
-.articlesByTopic ul li {
-  border: 1px solid brown;
-  margin: 50px;
-  list-style: none;
-}
-
-.sort-articles {
-  margin-top: 10px;
+.like-dislike-btn {
+  border-radius: 15px;
+  margin-top: 3px;
   margin-bottom: 10px;
-  padding: 2px;
+  background-color: #13505b;
+  border-color: #13505b;
+  color: white;
+  width: 70px;
+  align-self: center;
+  margin-right: 3px;
+}
+
+.like-dislike-btn:hover {
+  color: red;
+  background-color: yellow;
+  border-color: yellow;
+}
+
+/*=============== single Article =========================*/
+
+/*=============== All Comments =========================*/
+
+.all-comments ul {
+  padding: 0;
+  margin: 0;
+}
+
+.all-comments li {
+  padding: 0;
+  background-color: #417b5a;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  margin: 20px 100px;
+  text-transform: uppercase;
+}
+
+.all-comments ul h3 {
+  background-color: #1f2041;
+  margin-top: -18px;
+  padding: 15px;
+  color: white;
+}
+
+.comment-btn {
+  border-radius: 15px;
+  margin-top: 3px;
+  margin-bottom: 5px;
+  background-color: #13505b;
+  border-color: #13505b;
+  color: white;
+  width: 130px;
+  align-self: center;
+}
+
+.comment-btn:hover {
+  background-color: yellow;
+  border-color: yellow;
+  color: red;
+}
+
+/*=============== All Comments =========================*/
+
+.login {
+  margin-top: 100px;
+  text-transform: uppercase;
+  background-color: #417b5a;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 150px;
+  margin-right: 150px;
+  color: white;
+  border-radius: 15px;
 }
 
 .login ul {
@@ -70,63 +206,106 @@ nav ul li {
   margin: 0;
 }
 
-.login {
-  margin-top: 80px;
-  background-color: blueviolet;
-  color: white;
-  margin-left: 100px;
-  margin-right: 100px;
-  padding: 10px;
-  border-radius: 20px;
-}
-
-.all-comments ul {
-  padding: 0;
-  margin: 0;
-}
-
-.all-comments ul li {
-  border: 1px solid brown;
-  margin: 50px;
+.login ul li {
   list-style: none;
 }
 
-.del-btn {
-  margin-bottom: 10px;
-}
-.single-article {
-  border: 5px solid brown;
-  margin: 50px;
+.login input {
+  width: 150px;
+  align-self: center;
 }
 
-.login-msg {
-  border: 1px solid red;
-  padding: 10px;
-  margin-left: 100px;
-  margin-right: 100px;
-  background-color: burlywood;
-}
-
-.voter {
-  width: 70px;
-  border-radius: 20px;
-  background-color: chocolate;
-  border-color: chocolate;
+.login-btn {
+  border-radius: 15px;
+  margin-top: 3px;
+  background-color: #13505b;
+  border-color: #13505b;
   color: white;
-  margin-right: 5px;
-  margin-bottom: 5px;
+  width: 70px;
+  align-self: center;
 }
 
-.error {
-  margin-top: 150px;
-  font-size: 3em;
+.login-btn:hover {
+  background-color: yellow;
+  border-color: yellow;
+  color: red;
 }
 
-.article-error {
-  margin-top: 150px;
-  font-size: 3em;
+/*=============== Login =========================*/
+
+/*=============== media queries login section =========================*/
+
+@media only screen and (max-width: 466px) {
+  .login {
+    margin-top: 100px;
+    text-transform: uppercase;
+    background-color: #417b5a;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 70px;
+    margin-right: 70px;
+    color: white;
+    border-radius: 15px;
+  }
 }
-.topics-error {
-  margin-top: 150px;
-  font-size: 3em;
+
+/*=============== media queries login section =========================*/
+
+/*=============== media queries ========================*/
+
+@media only screen and (max-width: 466px) {
+  .topics-content li {
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    margin: 40px 70px;
+    text-transform: uppercase;
+    background-color: #e9d2c0;
+  }
+  .articlesBy-topics li {
+    padding: 0;
+    background-color: #e9d2c0;
+    list-style: none;
+    line-height: 1em;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    margin: 20px 50px;
+    text-transform: uppercase;
+  }
+  .single-article {
+    margin-top: 30px;
+    color: white;
+    border-radius: 20px;
+    padding: 5px;
+    background-color: #417b5a;
+    justify-content: center;
+    margin-left: 25px;
+    margin-right: 25px;
+  }
+  .all-articles li {
+    padding: 0;
+    background-color: #e9d2c0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    margin: 20px 50px;
+    text-transform: uppercase;
+  }
+  .all-comments li {
+    padding: 0;
+    background-color: #417b5a;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    margin: 20px 50px;
+    text-transform: uppercase;
+  }
 }
+
+/*=============== media queries =========================*/

@@ -1,19 +1,25 @@
 import React from "react";
 import { Link } from "@reach/router";
 
-const Nav = () => {
+const Nav = (props) => {
   return (
-    <nav>
+    <nav className="sidebar">
       <ul>
-        <Link to={"/"}>
-          <li>Home</li>
+        <Link to="/">
+          <li className="btn">Home</li>
         </Link>
-        <Link to={"/articles"}>
-          <li>Articles</li>
+        <Link to="/articles">
+          <li className="btn">Articles</li>
         </Link>
-        <Link to={"/login"}>
-          <li>Login</li>
-        </Link>
+        {props.loggedInUser !== null ? (
+          <Link to="/login">
+            <li className="btn-unique">{props.loggedInUser}</li>
+          </Link>
+        ) : (
+          <Link to="/login">
+            <li className="btn">Login</li>
+          </Link>
+        )}
       </ul>
     </nav>
   );

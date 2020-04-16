@@ -21,14 +21,14 @@ class Voter extends Component {
       <section>
         <p>votes: {votes + optimisticVoting}</p>
         <button
-          className="voter"
+          className="like-dislike-btn"
           disabled={optimisticVoting > 0}
           onClick={(e) => this.handleClick(1)}
         >
           Like
         </button>
         <button
-          className="voter"
+          className="like-dislike-btn"
           disabled={optimisticVoting < 0}
           onClick={(e) => this.handleClick(-1)}
         >

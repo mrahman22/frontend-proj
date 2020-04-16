@@ -28,7 +28,9 @@ class LoginForm extends Component {
           value={this.state.username}
           onChange={(e) => this.handleInput("username", e.target.value)}
         />
-        <button onClick={this.handleClick}>Log in</button>
+        <button className="login-btn" onClick={this.handleClick}>
+          Log in
+        </button>
         {!loggedInUser ? (
           <p>Not currently logged in</p>
         ) : (
@@ -44,7 +46,9 @@ class LoginForm extends Component {
           <li>cooljmessy</li>
         </ul>
         <br />
-        <button onClick={this.props.handleLogout}>Log out</button>
+        <button className="login-btn" onClick={this.props.handleLogout}>
+          Log out
+        </button>
       </section>
     );
   }
