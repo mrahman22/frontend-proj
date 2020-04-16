@@ -12,6 +12,7 @@ const SortArticles = (props) => {
       <option value="select" defaultValue>
         select
       </option>
+      <option value="author">author</option>
       <option value="created_at" defaultValue>
         created_at
       </option>

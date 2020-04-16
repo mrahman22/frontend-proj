@@ -10,6 +10,7 @@ class ArticlesList extends Component {
     isLoading: true,
     type: "articles",
     hasError: false,
+    search: "",
   };
 
   componentDidMount() {
@@ -34,14 +35,18 @@ class ArticlesList extends Component {
     });
   };
 
+  handleSearch = (input) => {
+    this.setState({ search: input });
+  };
+
   render() {
     const { articles, isLoading, hasError } = this.state;
     if (hasError) return <p className="topics-error">"Topic does not exist"</p>;
     if (isLoading) return "....Loading";
     return (
       <div className="all-articles">
+        <br />
         <SortArticles handleSort={this.handleSort} />
-
         <ul>
           {articles.map((article) => {
             return (
