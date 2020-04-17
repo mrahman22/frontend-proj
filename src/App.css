@@ -76,7 +76,6 @@ nav li {
   flex-direction: column;
   border: 1px solid black;
   margin: 20px 100px;
-  text-transform: uppercase;
   background-color: #e9d2c0;
 }
 
@@ -100,7 +99,6 @@ nav li {
   flex-direction: column;
   border: 1px solid black;
   margin: 20px 100px;
-  text-transform: uppercase;
 }
 
 .all-articles ul h5 {
@@ -146,6 +144,12 @@ nav li {
   border-color: yellow;
 }
 
+.like-dislike-btn:disabled {
+  background-color: red;
+  border-color: red;
+  color: white;
+}
+
 /*=============== single Article =========================*/
 
 /*=============== All Comments =========================*/
@@ -163,13 +167,12 @@ nav li {
   flex-direction: column;
   border: 1px solid black;
   margin: 20px 100px;
-  text-transform: uppercase;
 }
 
 .all-comments ul h3 {
   background-color: #1f2041;
-  margin-top: -18px;
-  padding: 15px;
+  margin-top: 0px;
+  padding: 10px;
   color: white;
 }
 
@@ -233,6 +236,11 @@ nav li {
   background-color: yellow;
   border-color: yellow;
   color: red;
+}
+
+.invalid-user {
+  color: red;
+  font-size: 1.5em;
 }
 
 /*=============== Login =========================*/

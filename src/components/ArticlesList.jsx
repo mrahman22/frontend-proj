@@ -11,10 +11,10 @@ class ArticlesList extends Component {
     isLoading: true,
     type: "articles",
     hasError: false,
-    search: "",
   };
 
   componentDidMount() {
+    console.log(this.props.path === "/topics/:topic_slug");
     this.fetchAllArticles();
   }
 
@@ -36,18 +36,17 @@ class ArticlesList extends Component {
     });
   };
 
-  handleSearch = (input) => {
-    this.setState({ search: input });
-  };
-
   render() {
+    const path = this.props.path;
     const { articles, isLoading, hasError } = this.state;
     if (hasError) return <p className="topics-error">"Topic does not exist"</p>;
     if (isLoading) return "....Loading";
     return (
       <div className="all-articles">
         <br />
-        <SortArticles handleSort={this.handleSort} />
+        {path !== "/topics/:topic_slug" && (
+          <SortArticles handleSort={this.handleSort} />
+        )}
         <ul>
           {articles.map((article) => {
             return (
@@ -58,10 +57,10 @@ class ArticlesList extends Component {
                 <p>user: {article.author}</p>
                 <p>Topic: {article.topic}</p>
                 <p>
-                  Created_at:{" "}
+                  Created at:{" "}
                   {moment(article.created_at).format("MMMM Do YYYY, h:mm:ss a")}
                 </p>
-                <p>Comment_Count: {article.comment_count}</p>
+                <p>Comment Count: {article.comment_count}</p>
                 <Voter
                   votes={article.votes}
                   id={article.article_id}

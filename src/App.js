@@ -19,14 +19,15 @@ class App extends React.Component {
       "happyamy2016",
     ],
     loggedInUser: null,
+    invalidUser: null,
   };
 
   handleLogin = (user) => {
     const { users } = this.state;
     if (users.includes(user)) {
-      this.setState({ loggedInUser: user });
+      this.setState({ loggedInUser: user, invalidUser: null });
     } else {
-      alert("user not valid");
+      this.setState({ invalidUser: user, loggedInUser: null });
     }
   };
 
@@ -51,6 +52,7 @@ class App extends React.Component {
             handleLogin={this.handleLogin}
             loggedInUser={this.state.loggedInUser}
             handleLogout={this.handleLogout}
+            invalidUser={this.state.invalidUser}
           />
           <ErrorForm default status={404} msg={"page not found"} />
         </Router>

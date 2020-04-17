@@ -24,6 +24,7 @@ class PostNewComment extends Component {
           <input
             type="text"
             name="body"
+            required
             value={this.state.body}
             onChange={(e) => this.handleInput("body", e.target.value)}
           />

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
 import moment from "moment";
-import { Link } from "@reach/router";
 import PostNewComment from "./PostNewComment";
+import Comments from "./Comments";
 import Voter from "./Voter";
 
 class SingleArticle extends Component {
@@ -79,44 +79,23 @@ class SingleArticle extends Component {
           </p>
           <p>Body: {selectedArticle.body}</p>
           <p>Comment Count: {selectedArticle.comment_count}</p>
-          {/* <p>Votes: {selectedArticle.votes}</p> */}
           <Voter
             votes={selectedArticle.votes}
             id={selectedArticle.article_id}
             type={this.state.type}
           />
         </section>
-        <Link to={"/login"}>
-          <p className="login-msg">
-            You must be logged in to post or delete a comment
-          </p>
-        </Link>
+        <p>You must be logged in to post or delete a comment</p>
         {loggedInUser && <PostNewComment postComment={this.postComment} />}
         <ul>
           {comments.map((comment) => {
             return (
               <li key={comment.comment_id}>
-                <br />
-                <h3>username: {comment.author}</h3>
-                <p>comment_id: {comment.comment_id}</p>
-                <p>article_id: {comment.article_id}</p>
-                <p>
-                  created_at:{" "}
-                  {moment(comment.created_at).format("MMMM Do YYYY, h:mm:ss a")}
-                </p>
-                <p>body: {comment.body}</p>
-                {/* <p>votes: {comment.votes}</p> */}
-                <Voter votes={comment.votes} id={comment.comment_id} />
-                {loggedInUser === comment.author && (
-                  <button
-                    className="del-btn"
-                    onClick={(e) => {
-                      this.deleteComment(comment.comment_id);
-                    }}
-                  >
-                    Delete comment
-                  </button>
-                )}
+                <Comments
+                  comments={comment}
+                  loggedInUser={this.props.loggedInUser}
+                  deleteComment={this.deleteComment}
+                />
               </li>
             );
           })}

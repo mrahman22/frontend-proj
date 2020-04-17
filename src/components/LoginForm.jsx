@@ -18,7 +18,7 @@ class LoginForm extends Component {
   };
 
   render() {
-    const { loggedInUser } = this.props;
+    const { loggedInUser, invalidUser } = this.props;
     return (
       <section className="login">
         <p>You must be logged in to post a delete a comment</p>
@@ -28,14 +28,18 @@ class LoginForm extends Component {
           value={this.state.username}
           onChange={(e) => this.handleInput("username", e.target.value)}
         />
-        <button className="login-btn" onClick={this.handleClick}>
-          Log in
-        </button>
+
         {!loggedInUser ? (
-          <p>Not currently logged in</p>
+          <>
+            <p>Not currently logged in</p>
+            <button className="login-btn" onClick={this.handleClick}>
+              Log in
+            </button>
+          </>
         ) : (
           <p>You are logged in as: {loggedInUser}</p>
         )}
+        {invalidUser && <p className="invalid-user">user not valid</p>}
         <p>Please see a list of valid users below</p>
         <ul>
           <li>jessjelly</li>
@@ -46,9 +50,11 @@ class LoginForm extends Component {
           <li>cooljmessy</li>
         </ul>
         <br />
-        <button className="login-btn" onClick={this.props.handleLogout}>
-          Log out
-        </button>
+        {loggedInUser && (
+          <button className="login-btn" onClick={this.props.handleLogout}>
+            Log out
+          </button>
+        )}
       </section>
     );
   }
