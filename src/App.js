@@ -31,7 +31,7 @@ class App extends React.Component {
   };
 
   handleLogout = () => {
-    this.setState({ loggedInUser: "" });
+    this.setState({ loggedInUser: null });
   };
 
   render() {

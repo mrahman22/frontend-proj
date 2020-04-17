@@ -106,8 +106,12 @@ nav li {
 .all-articles ul h5 {
   background-color: #417b5a;
   margin-top: 0;
-  padding: 10px;
+  padding: 20px;
   color: white;
+}
+
+.all-articles h5:hover {
+  color: yellow;
 }
 /*=============== All Articles =========================*/
 

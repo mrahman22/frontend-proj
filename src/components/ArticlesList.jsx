@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
+import moment from "moment";
 import SortArticles from "./SortArticles";
 import * as api from "../utils/api";
 import Voter from "./Voter";
@@ -56,7 +57,10 @@ class ArticlesList extends Component {
                 </Link>
                 <p>user: {article.author}</p>
                 <p>Topic: {article.topic}</p>
-                <p>Created_at: {article.created_at}</p>
+                <p>
+                  Created_at:{" "}
+                  {moment(article.created_at).format("MMMM Do YYYY, h:mm:ss a")}
+                </p>
                 <p>Comment_Count: {article.comment_count}</p>
                 <Voter
                   votes={article.votes}

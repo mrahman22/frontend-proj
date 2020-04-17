@@ -30,8 +30,6 @@ class Topics extends Component {
                 <Link to={`/topics/${topic.slug}`}>
                   <h2 className="topics-header">{topic.slug}</h2>
                 </Link>
-
-                <br />
                 <p className="topics-body">{topic.description}</p>
               </li>
             );

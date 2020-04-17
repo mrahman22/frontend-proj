@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
+import moment from "moment";
 import { Link } from "@reach/router";
 import PostNewComment from "./PostNewComment";
 import Voter from "./Voter";
@@ -70,7 +71,12 @@ class SingleArticle extends Component {
           <h2>{selectedArticle.title}</h2>
           <p>Author: {selectedArticle.author}</p>
           <p>Topic: {selectedArticle.topic}</p>
-          <p>Created_at: {selectedArticle.created_at}</p>
+          <p>
+            Created_at:{" "}
+            {moment(selectedArticle.created_at).format(
+              "MMMM Do YYYY, h:mm:ss a"
+            )}
+          </p>
           <p>Body: {selectedArticle.body}</p>
           <p>Comment Count: {selectedArticle.comment_count}</p>
           {/* <p>Votes: {selectedArticle.votes}</p> */}
@@ -94,7 +100,10 @@ class SingleArticle extends Component {
                 <h3>username: {comment.author}</h3>
                 <p>comment_id: {comment.comment_id}</p>
                 <p>article_id: {comment.article_id}</p>
-                <p>created_at: {comment.created_at}</p>
+                <p>
+                  created_at:{" "}
+                  {moment(comment.created_at).format("MMMM Do YYYY, h:mm:ss a")}
+                </p>
                 <p>body: {comment.body}</p>
                 {/* <p>votes: {comment.votes}</p> */}
                 <Voter votes={comment.votes} id={comment.comment_id} />
