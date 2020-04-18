@@ -2,11 +2,24 @@ import axios from "axios";
 
 const baseUrl = "https://nc2020server.herokuapp.com/api";
 
-export const fetchArticles = (topic) => {
+export const fetchArticles = (topic, value) => {
   return axios
     .get(`${baseUrl}/articles`, {
       params: {
         topic: topic,
+        sort_by: value,
+      },
+    })
+    .then(({ data }) => {
+      return data.articles;
+    });
+};
+
+export const sortArticles = (value) => {
+  return axios
+    .get(`${baseUrl}/articles`, {
+      params: {
+        sort_by: value,
       },
     })
     .then(({ data }) => {
@@ -30,18 +43,6 @@ export const fetchArticlesByTopic = (topic) => {
   return axios.get(`${baseUrl}/topics/${topic}`).then(({ data }) => {
     return data.articles;
   });
-};
-
-export const sortArticles = (value) => {
-  return axios
-    .get(`${baseUrl}/articles`, {
-      params: {
-        sort_by: value,
-      },
-    })
-    .then(({ data }) => {
-      return data.articles;
-    });
 };
 
 export const fetchCommentsById = (article_id) => {
@@ -69,4 +70,10 @@ export const pathVotes = (id, inc_votes, type) => {
     type = "comments";
   }
   return axios.patch(`${baseUrl}/${type}/${id}`, { inc_votes });
+};
+
+export const fetchAllUsers = () => {
+  return axios.get(`${baseUrl}/users`).then(({ data }) => {
+    return data.users;
+  });
 };

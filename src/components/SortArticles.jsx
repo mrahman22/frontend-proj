@@ -7,7 +7,7 @@ const SortArticles = (props) => {
       <select
         className="sort-articles"
         onChange={(e) => {
-          props.handleSort(e.target.value);
+          props.fetchAllArticles(e.target.value);
         }}
       >
         <option value="select" defaultValue>

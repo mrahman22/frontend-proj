@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import Header from "./components/Header";
+import * as api from "./utils/api";
 import Home from "./components/Home";
 import { Router } from "@reach/router";
 import SingleArticle from "./components/SingleArticle";
@@ -10,20 +11,23 @@ import ArticlesList from "./components/ArticlesList";
 
 class App extends React.Component {
   state = {
-    users: [
-      "jessjelly",
-      "tickle122",
-      "weegembump",
-      "cooljmessy",
-      "grumpy19",
-      "happyamy2016",
-    ],
+    users: [],
     loggedInUser: null,
     invalidUser: null,
   };
 
+  componentDidMount() {
+    this.getAllUsers();
+  }
+
+  getAllUsers = () => {
+    api.fetchAllUsers().then((users) => {
+      this.setState({ users });
+    });
+  };
+
   handleLogin = (user) => {
-    const { users } = this.state;
+    const users = this.state.users.map((user) => user.username);
     if (users.includes(user)) {
       this.setState({ loggedInUser: user, invalidUser: null });
     } else {

@@ -4,6 +4,7 @@ import moment from "moment";
 import SortArticles from "./SortArticles";
 import * as api from "../utils/api";
 import Voter from "./Voter";
+import Loader from "./Loader";
 
 class ArticlesList extends Component {
   state = {
@@ -14,14 +15,13 @@ class ArticlesList extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props.path === "/topics/:topic_slug");
     this.fetchAllArticles();
   }
 
-  fetchAllArticles = () => {
+  fetchAllArticles = (value) => {
     const topic = this.props.topic_slug;
     api
-      .fetchArticles(topic)
+      .fetchArticles(topic, value)
       .then((articles) => {
         this.setState({ articles, isLoading: false });
       })
@@ -30,23 +30,14 @@ class ArticlesList extends Component {
       });
   };
 
-  handleSort = (value) => {
-    api.sortArticles(value).then((articles) => {
-      this.setState({ articles, isLoading: false });
-    });
-  };
-
   render() {
-    const path = this.props.path;
     const { articles, isLoading, hasError } = this.state;
     if (hasError) return <p className="topics-error">"Topic does not exist"</p>;
-    if (isLoading) return "....Loading";
+    if (isLoading) return <Loader />;
     return (
       <div className="all-articles">
         <br />
-        {path !== "/topics/:topic_slug" && (
-          <SortArticles handleSort={this.handleSort} />
-        )}
+        <SortArticles fetchAllArticles={this.fetchAllArticles} />
         <ul>
           {articles.map((article) => {
             return (

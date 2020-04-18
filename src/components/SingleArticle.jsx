@@ -4,6 +4,7 @@ import moment from "moment";
 import PostNewComment from "./PostNewComment";
 import Comments from "./Comments";
 import Voter from "./Voter";
+import Loader from "./Loader";
 
 class SingleArticle extends Component {
   state = {
@@ -64,7 +65,7 @@ class SingleArticle extends Component {
     const { selectedArticle, isLoading, comments, hasError } = this.state;
     if (hasError)
       return <p className="article-error">"article id does not exist"</p>;
-    if (isLoading) return "....Loading";
+    if (isLoading) return <Loader />;
     return (
       <div className="all-comments">
         <section className="single-article">

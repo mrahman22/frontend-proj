@@ -245,6 +245,16 @@ nav li {
 
 /*=============== Login =========================*/
 
+/*=============== Loader =========================*/
+
+.loader {
+  text-align: center;
+  margin-top: 150px;
+  font-size: 2em;
+}
+
+/*=============== Loader =========================*/
+
 /*=============== media queries login section =========================*/
 
 @media only screen and (max-width: 466px) {

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
 import { Link } from "@reach/router";
+import Loader from "./Loader";
 
 class Topics extends Component {
   state = {
@@ -20,7 +21,7 @@ class Topics extends Component {
 
   render() {
     const { topics, isLoading } = this.state;
-    if (isLoading) return "....Loading";
+    if (isLoading) return <Loader />;
     return (
       <div className="topics-content">
         <ul>
