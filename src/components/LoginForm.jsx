@@ -7,7 +7,7 @@ class LoginForm extends Component {
   };
 
   handleInput = (key, value) => {
-    this.setState({ [key]: value, loggedOut: false });
+    this.setState({ [key]: value.toLowerCase(), loggedOut: false });
   };
 
   handleClick = (e) => {

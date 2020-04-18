@@ -15,18 +15,6 @@ export const fetchArticles = (topic, value) => {
     });
 };
 
-export const sortArticles = (value) => {
-  return axios
-    .get(`${baseUrl}/articles`, {
-      params: {
-        sort_by: value,
-      },
-    })
-    .then(({ data }) => {
-      return data.articles;
-    });
-};
-
 export const fetchArticleById = (article_id) => {
   return axios.get(`${baseUrl}/articles/${article_id}`).then(({ data }) => {
     return data.article;
