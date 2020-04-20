@@ -86,7 +86,9 @@ class SingleArticle extends Component {
             type={this.state.type}
           />
         </section>
-        <p>You must be logged in to post or delete a comment</p>
+        <p className="must-login-msg">
+          You must be logged in to post or delete a comment
+        </p>
         {loggedInUser && <PostNewComment postComment={this.postComment} />}
         <ul>
           {comments.map((comment) => {

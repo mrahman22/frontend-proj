@@ -43,6 +43,7 @@ class LoginForm extends Component {
         <p>Please see a list of valid users below</p>
         <ul>
           <li>jessjelly</li>
+          <li>tickle122</li>
           <li>weegembump</li>
           <li>cooljmessy</li>
           <li>grumpy19</li>
