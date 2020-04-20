@@ -5,7 +5,6 @@ import SortArticles from "./SortArticles";
 import * as api from "../utils/api";
 import Voter from "./Voter";
 import Loader from "./Loader";
-import OrderBy from "./OrderBy";
 
 class ArticlesList extends Component {
   state = {
@@ -13,34 +12,22 @@ class ArticlesList extends Component {
     isLoading: true,
     type: "articles",
     hasError: false,
-    order: "",
   };
 
   componentDidMount() {
     this.fetchAllArticles();
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.order !== this.state.order) {
-      this.fetchAllArticles();
-    }
-  }
-
-  fetchAllArticles = (value) => {
+  fetchAllArticles = (sort_by, order) => {
     const topic = this.props.topic_slug;
-    const { order } = this.state;
     api
-      .fetchArticles(topic, value, order)
+      .fetchArticles(topic, sort_by, order)
       .then((articles) => {
         this.setState({ articles, isLoading: false });
       })
       .catch((err) => {
         this.setState({ hasError: true });
       });
-  };
-
-  handleOrder = (order) => {
-    this.setState({ order });
   };
 
   render() {
@@ -51,10 +38,6 @@ class ArticlesList extends Component {
       <div className="all-articles">
         <br />
         <SortArticles
-          fetchAllArticles={this.fetchAllArticles}
-          handleOrder={this.handleOrder}
-        />
-        <OrderBy
           fetchAllArticles={this.fetchAllArticles}
           handleOrder={this.handleOrder}
         />

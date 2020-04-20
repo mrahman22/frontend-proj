@@ -2,13 +2,13 @@ import axios from "axios";
 
 const baseUrl = "https://nc2020server.herokuapp.com/api";
 
-export const fetchArticles = (topic, value, order) => {
+export const fetchArticles = (topic, sort_by, order) => {
   return axios
     .get(`${baseUrl}/articles`, {
       params: {
-        topic: topic,
-        sort_by: value,
-        order: order,
+        topic,
+        sort_by,
+        order,
       },
     })
     .then(({ data }) => {
