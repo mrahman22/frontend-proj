@@ -18,16 +18,18 @@ class LoginForm extends Component {
   };
 
   render() {
-    const { loggedInUser, invalidUser } = this.props;
+    const { loggedInUser, invalidUser, users } = this.props;
     return (
       <section className="login">
-        <p>You must be logged in to post a delete a comment</p>
-        <input
-          type="text"
-          name="username"
-          value={this.state.username}
-          onChange={(e) => this.handleInput("username", e.target.value)}
-        />
+        <p>You must be logged in to post or delete a comment</p>
+        {!loggedInUser && (
+          <input
+            type="text"
+            name="username"
+            value={this.state.username}
+            onChange={(e) => this.handleInput("username", e.target.value)}
+          />
+        )}
 
         {!loggedInUser ? (
           <>
@@ -42,13 +44,9 @@ class LoginForm extends Component {
         {invalidUser && <p className="invalid-user">user not valid</p>}
         <p>Please see a list of valid users below</p>
         <ul>
-          <li>jessjelly</li>
-          <li>tickle122</li>
-          <li>weegembump</li>
-          <li>cooljmessy</li>
-          <li>grumpy19</li>
-          <li>happyamy2016</li>
-          <li>cooljmessy</li>
+          {users.map((user) => {
+            return <li key={user.username}>{user.username}</li>;
+          })}
         </ul>
         <br />
         {loggedInUser && (

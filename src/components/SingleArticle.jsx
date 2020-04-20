@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
 import moment from "moment";
-import PostNewComment from "./PostNewComment";
 import Comments from "./Comments";
 import Voter from "./Voter";
 import Loader from "./Loader";
@@ -9,7 +8,6 @@ import Loader from "./Loader";
 class SingleArticle extends Component {
   state = {
     selectedArticle: [],
-    comments: [],
     isLoading: true,
     type: "articles",
     hasError: false,
@@ -17,15 +15,7 @@ class SingleArticle extends Component {
 
   componentDidMount() {
     this.getArticleById();
-    this.fetchCommentsByArticles();
   }
-
-  fetchCommentsByArticles = () => {
-    const { article_id } = this.props;
-    api.fetchCommentsById(article_id).then((comments) => {
-      this.setState({ comments, isLoading: false });
-    });
-  };
 
   getArticleById = () => {
     const { article_id } = this.props;
@@ -39,35 +29,14 @@ class SingleArticle extends Component {
       });
   };
 
-  postComment = (newComments) => {
-    const { loggedInUser, article_id } = this.props;
-    newComments.username = loggedInUser;
-    api.postNewComment(article_id, newComments).then((comment) => {
-      this.setState((currentState) => {
-        return { comments: [comment, ...currentState.comments] };
-      });
-    });
-  };
-
-  deleteComment = (comment_id) => {
-    api.deleteCommentById(comment_id);
-    this.setState((currentState) => {
-      return {
-        comments: currentState.comments.filter((comment) => {
-          return comment.comment_id !== comment_id;
-        }),
-      };
-    });
-  };
-
   render() {
     const { loggedInUser } = this.props;
-    const { selectedArticle, isLoading, comments, hasError } = this.state;
+    const { selectedArticle, isLoading, hasError } = this.state;
     if (hasError)
       return <p className="article-error">"article id does not exist"</p>;
     if (isLoading) return <Loader />;
     return (
-      <div className="all-comments">
+      <div>
         <section className="single-article">
           <h2>{selectedArticle.title}</h2>
           <p>Author: {selectedArticle.author}</p>
@@ -86,23 +55,11 @@ class SingleArticle extends Component {
             type={this.state.type}
           />
         </section>
-        <p className="must-login-msg">
-          You must be logged in to post or delete a comment
-        </p>
-        {loggedInUser && <PostNewComment postComment={this.postComment} />}
-        <ul>
-          {comments.map((comment) => {
-            return (
-              <li key={comment.comment_id}>
-                <Comments
-                  comments={comment}
-                  loggedInUser={this.props.loggedInUser}
-                  deleteComment={this.deleteComment}
-                />
-              </li>
-            );
-          })}
-        </ul>
+        <Comments
+          loggedInUser={loggedInUser}
+          comments={this.state.comments}
+          article_id={selectedArticle.article_id}
+        />
       </div>
     );
   }

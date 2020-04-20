@@ -57,6 +57,7 @@ class App extends React.Component {
             loggedInUser={this.state.loggedInUser}
             handleLogout={this.handleLogout}
             invalidUser={this.state.invalidUser}
+            users={this.state.users}
           />
           <ErrorForm default status={404} msg={"page not found"} />
         </Router>

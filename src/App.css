@@ -181,7 +181,7 @@ nav li {
   margin: 20px 100px;
 }
 
-.all-comments ul h3 {
+.all-comments h3 {
   background-color: #1f2041;
   margin-top: 0px;
   padding: 10px;
@@ -208,6 +208,8 @@ nav li {
 .del-btn {
   margin-bottom: 10px;
   padding: 2px 10px;
+  width: 140px;
+  align-self: center;
   border-color: #1f2041;
   background-color: #1f2041;
   color: white;
